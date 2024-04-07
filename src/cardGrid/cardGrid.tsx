@@ -47,18 +47,29 @@ const CardGrid = (props: CardCarouselProps) => {
 
   return (
     <>
-      <FloatButton.Group shape="square" style={{ right: 94 }}>
+      <FloatButton.Group shape="square" style={{ right: 16 }}>
         <FloatButton icon={<SyncOutlined />} onClick={handleShuffleWordList} />
         <FloatButton.BackTop visibilityHeight={0} />
       </FloatButton.Group>
       <Row
         gutter={16}
-        style={{ marginLeft: 0, marginRight: 0, padding: "8px 16px" }}
+        style={{
+          marginLeft: 0,
+          marginRight: 0,
+          padding: "8px 16px",
+        }}
       >
         {_.map(props.wordList, (word: Word) => (
           <Col
-            span={8}
-            style={{ paddingLeft: 0, paddingRight: 0, paddingBlock: 8 }}
+            md={8}
+            xs={24}
+            style={{
+              paddingLeft: 0,
+              paddingRight: 0,
+              paddingBlock: 8,
+              display: "flex",
+              justifyContent: "center",
+            }}
           >
             {_.includes(showMeaningItems, word.word) ? (
               <Card
