@@ -1,5 +1,5 @@
-import { SyncOutlined } from "@ant-design/icons";
-import { Card, Col, FloatButton, Row } from "antd";
+import { NotificationOutlined, SyncOutlined } from "@ant-design/icons";
+import { Button, Card, Col, FloatButton, Row } from "antd";
 import _ from "lodash";
 import { useEffect, useState } from "react";
 import "./cardGrid.s.scss";
@@ -39,6 +39,12 @@ const CardGrid = (props: CardCarouselProps) => {
       );
       setShowMeaningItems(newShowMeaningItems);
     }
+  };
+
+  const handleSpeechClick = (word: string) => {
+    const utterThis = new SpeechSynthesisUtterance(word);
+    const synth = window.speechSynthesis;
+    synth.speak(utterThis);
   };
 
   useEffect(() => {
@@ -88,6 +94,15 @@ const CardGrid = (props: CardCarouselProps) => {
                 className="card"
               >
                 <span>{word.word}</span>
+                <Button
+                  ghost
+                  icon={<NotificationOutlined style={{ color: "#fff" }} />}
+                  style={{ marginLeft: 32 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSpeechClick(word.word);
+                  }}
+                />
               </Card>
             )}
           </Col>
